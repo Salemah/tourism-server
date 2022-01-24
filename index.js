@@ -51,8 +51,6 @@ async function run() {
       //get booking
 
       app.get('/booking', async (req, res) => {
-        
-        
         const query =  Bookingcollection.find({});
         const result = await  query.toArray(); 
         // const result = await query.toArray();
@@ -60,9 +58,28 @@ async function run() {
         res.send(result);
   
       });
+      //add packege
+      app.post('/addpackege', async (req, res) => {
+        
+        const query = req.body;
+        const result = await packegecollection.insertOne(query);
+        // const result = await query.toArray();
+        // console.log("got id",result);
+        res.send(result);
+        console.log(result);
+       
+  
+      });
+      //
+      app.get("/mybooking/:email", async (req, res) => {
+        const result = await Bookingcollection.find({
+          email: req.params.email,
+        }).toArray();
+        res.send(result);
   
       
-    } finally {
+      });
+     } finally {
     //   await client.close();
     }
   }
