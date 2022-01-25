@@ -19,6 +19,7 @@ async function run() {
       const database = client.db("TourManage");
       const packegecollection = database.collection("Packege");
       const Bookingcollection = database.collection("Booking");
+      const resortcollection = database.collection("Resort");
       console.log("connection succesfull");
       //GET API
       app.get('/packege',async(req,res)=>{
@@ -45,6 +46,17 @@ async function run() {
         // console.log("got id",result);
         res.send(result);
         console.log(result);
+       
+  
+      });
+      //insert resort
+      app.get('/resort', async (req, res) => {
+        
+        const result =   resortcollection.find({});
+        const resort = await result.toArray();
+        
+        res.send(resort);
+       
        
   
       });
