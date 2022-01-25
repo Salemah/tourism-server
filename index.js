@@ -76,9 +76,14 @@ async function run() {
           email: req.params.email,
         }).toArray();
         res.send(result);
-  
-      
-      });
+  });
+  app.delete('/booking/:id',async (req,res)=>{
+    const id = req.params.id;
+    const query = {_id:objectId(id)}
+    const result = await Bookingcollection.deleteOne(query);
+    console.log("added user", result);
+    res.json(result);
+    })
      } finally {
     //   await client.close();
     }
