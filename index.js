@@ -60,6 +60,27 @@ async function run() {
        
   
       });
+      app.get('/resort/:id', async (req, res) => {
+        const id = req.params.id;
+        const query = { _id: objectId(id) }
+        const result = await  resortcollection.findOne(query);
+        // const result = await query.toArray();
+        // console.log("got id",result);
+        res.send(result);
+  
+      });
+      //ADD RESORT
+      app.post('/addresort', async (req, res) => {
+        
+        const query = req.body;
+        const result = await resortcollection.insertOne(query);
+        // const result = await query.toArray();
+        // console.log("got id",result);
+        res.send(result);
+        console.log(result);
+       
+  
+      });
       //get booking
 
       app.get('/booking', async (req, res) => {
